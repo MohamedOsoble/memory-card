@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import PokemonCard from "./Card";
 import Scoreboard from "./Scoreboard";
-import Music from "../depreciated/Music";
 
 export default function Game() {
   const [idList, setIdList] = useState([]);
