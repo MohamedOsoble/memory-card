@@ -23,6 +23,7 @@ a:hover {
 }
 
 body {
+  background-image: url('./assets/background-image.jpg');
   margin: 0;
   display: flex;
   place-items: center;
@@ -33,6 +34,14 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+h2{
+  font-size: 1.875em;
+}
+
+h3{
+  color: rgb(38, 28, 20);
 }
 
 button {
@@ -52,6 +61,31 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+#game{
+  width: 75vw;
+}
+
+.pokemon-grid{
+  display: grid;
+  grid-template-columns: repeat(5, 1.25fr);
+  grid-auto-rows: auto;
+  grid-gap: 1rem;
+}
+
+.pokemon-card{
+  border: 2px solid rgb(160, 78, 6);
+  border-radius: 20px;
+  background-color: rgb(243, 207, 63);
+}
+
+#game-title{
+  color: rgb(243, 207, 63)
+}
+
+.score{
+  color: rgb(243, 207, 63)
 }
 
 @media (prefers-color-scheme: light) {

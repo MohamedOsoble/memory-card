@@ -1,29 +1,36 @@
-import PokemonCard from "./PokemonAPI";
+import { useEffect, useState } from "react";
 
-export default function Cards() {
-  let requiredPokemon = [];
-  // Function creates a list of random pokemon ID's to be used. Currently takes no input for list length and is limited to Gen 1 (1 - 151)
-  // Can be amended to take input and remove min max and n
-  function generateIdList() {
-    const min = 1;
-    const max = 151;
-    const n = 15;
-    while (requiredPokemon.length < n) {
-      let int = Math.floor(Math.random() * (max - min + 1)) + min;
-      if (!requiredPokemon.includes(int)) {
-        requiredPokemon.push(int);
-      }
-    }
-    return requiredPokemon;
+export default function PokemonCard({ id, handleClick }) {
+  const pokemonAPI = "https://pokeapi.co/api/v2/pokemon/";
+  const [pokemon, setPokemon] = useState({});
+
+  // Pass Pokemon Id and will update the pokemon object with the required info
+  function getPokemon() {
+    return fetch(pokemonAPI + id)
+      .then((response) => response.json())
+      .then((data) =>
+        setPokemon({
+          id: data.id,
+          name: data.name.toUpperCase(),
+          sprite: data.sprites.front_default,
+        })
+      );
   }
 
-  generateIdList();
+  useEffect(() => {
+    getPokemon();
+  });
 
   return (
-    <div>
-      {requiredPokemon.map((id) => {
-        return <PokemonCard id={id} />;
-      })}
+    <div
+      key={pokemon.id}
+      id={pokemon.id}
+      title={pokemon.id + "-" + pokemon.name}
+      onClick={handleClick}
+      className="pokemon-card"
+    >
+      <img src={pokemon.sprite}></img>
+      <h3>{pokemon.name}</h3>
     </div>
   );
 }
